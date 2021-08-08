@@ -79,7 +79,27 @@ const menu = [
       img:
         "https://www.justonecookbook.com/wp-content/uploads/2011/10/Dorayaki-New-500x400.jpg",
       desc: `Red bean paste dessert, serving with honey.`,
+    },
+    {
+      id: 10,
+      title: "Künefe",
+      category: "Turkey",
+      price: 14.99,
+      img:
+        "https://cdn.yemek.com/mncrop/940/625/uploads/2015/05/kunefe-tarifi.jpg",
+      desc: `A traditional Middle Eastern dessert.`,
+    },
+    
+    {
+      id: 11,
+      title: "Lahmacun",
+      category: "Turkey",
+      price: 8.99,
+      img:
+        "https://cdn.yemek.com/mnresize/940/940/uploads/2020/04/lahmacun-yeni-one-cikan.jpg",
+      desc: `It is a kind of Middle Eastern style pide.`,
     },  
+
 ];
 
 
@@ -123,6 +143,7 @@ item();
 var Korea = [];
 var China = [];
 var Japan = [];
+var Turkey = [];
 
 menu.map(function(value, index){
   if(menu[index].category == "Korea"){
@@ -142,13 +163,20 @@ menu.map(function(value, index){
   }
 })
 
+menu.map(function(value, index){
+  if(menu[index].category == "Turkey"){
+    Turkey[index] = value;
+  }
+})
+
+
+
 
 var btn_div = document.getElementById("btn_menu");
 
 var btn_all = document.createElement("button");
 btn_all.className ="btn btn-outline-dark btn-item";
 btn_all.textContent = "All";
-
 var btn_kore = document.createElement("button");
 btn_kore.className ="btn btn-outline-dark btn-item";
 btn_kore.textContent = "Korea";
@@ -158,16 +186,24 @@ btn_japan.textContent = "Japan";
 var btn_china = document.createElement("button");
 btn_china.className ="btn btn-outline-dark btn-item";
 btn_china.textContent = "China";
+var btn_turkey = document.createElement("button");
+btn_turkey.className ="btn btn-outline-dark btn-item";
+btn_turkey.textContent = "Turkey";
+
+
+
 
 btn_div.appendChild(btn_all);
 btn_div.appendChild(btn_kore);
 btn_div.appendChild(btn_japan);
 btn_div.appendChild(btn_china);
+btn_div.appendChild(btn_turkey);
 
 btn_all.addEventListener("click",item);
 btn_kore.addEventListener("click",Kore);
 btn_china.addEventListener("click",Chi);
 btn_japan.addEventListener("click",Jap);
+btn_turkey.addEventListener("click",Turkish)
 
 
 
@@ -298,5 +334,49 @@ function Kore(){
   }
 
 }
+
+function Turkish(){
+  divim.innerHTML="";
+
+  for (var i = 0; i < Turkey.length; i++) {
+
+    if (Turkey[i] == null) {
+      Turkey.reduce(red,0);
+  }
+  else{
+    var resim = document.createElement("img");
+    resim.src = Turkey[i].img;
+    resim.className = "photo";
+    resim.alt = Turkey[i].title;
+    var div = document.createElement("div");
+    div.className = "menu-items col-lg-6 col-sm-12";
+    var div2 = document.createElement("div");
+    div2.className = "menu-info";
+    var div3 = document.createElement("div");
+    div3.className = "menu-title";
+    var baslik = document.createElement("h4");
+    baslik.textContent = Turkey[i].title;
+    var fiyat = document.createElement("h4");
+    fiyat.textContent = Turkey[i].price;
+    var div4 = document.createElement("div");
+    div4.className = "menu-text";
+    div4.textContent = Turkey[i].desc;
+
+    div3.appendChild(baslik);
+    div3.appendChild(fiyat);
+    div2.appendChild(div3);
+    div2.appendChild(div4);
+    div.appendChild(resim);
+    div.appendChild(div2);
+    divim.appendChild(div);
+
+  }
+    
+}
+
+
+}
+
+
 
 
